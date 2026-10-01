@@ -127,6 +127,7 @@ h3 { font-size: 1rem; margin: 0 0 8px; }
 }
 .venue-badge.conf { background: var(--fg); color: var(--bg); }
 .venue-badge.preprint { color: var(--muted); border: 1px solid var(--line); }
+.venue-badge.soon { color: #b7791f; border: 1px dashed currentColor; }
 .award { font-size: 0.9rem; color: #c0392b; font-weight: 600; margin-top: 2px; }
 .award a { color: inherit; }
 .pub-links { font-size: 0.9rem; margin-top: 4px; }

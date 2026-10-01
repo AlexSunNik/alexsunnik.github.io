@@ -104,20 +104,22 @@ function pubHTML(pub) {
     .map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(LINK_LABELS[k] || k)}</a>`)
     .join(" / ");
   const idx = PUBLICATIONS.indexOf(pub);
-  const cite = `<a href="#" class="cite-btn" data-idx="${idx}">Cite</a>`;
+  const cite = pub.comingSoon ? "" : `<a href="#" class="cite-btn" data-idx="${idx}">Cite</a>`;
   return `
     <article class="pub">
       <div class="thumb">${thumbHTML(pub)}</div>
       <div class="pub-body">
-        <span class="venue-badge ${pub.type === "conference" ? "conf" : "preprint"}">${esc(pub.venue)} ${pub.year}</span>
+        ${pub.comingSoon
+          ? `<span class="venue-badge soon">${esc(pub.venue)} · Coming Soon</span>`
+          : `<span class="venue-badge ${pub.type === "conference" ? "conf" : "preprint"}">${esc(pub.venue)} ${pub.year}</span>`}
         <div class="pub-title">${esc(pub.title)}</div>
         <div class="pub-authors">${authorsHTML(pub.authors)}</div>
         ${pub.award ? `<div class="award">🏆 ${pub.awardUrl ? `<a href="${esc(pub.awardUrl)}" target="_blank" rel="noopener">${esc(pub.award)}</a>` : esc(pub.award)}</div>` : ""}
-        <div class="pub-links">${links ? `${links} / ` : ""}${cite}</div>
-        <div class="bib" id="bib-${idx}" hidden>
+        ${links || cite ? `<div class="pub-links">${[links, cite].filter(Boolean).join(" / ")}</div>` : ""}
+        ${cite ? `<div class="bib" id="bib-${idx}" hidden>
           <pre>${esc(bibtex(pub))}</pre>
           <button class="bib-copy" data-idx="${idx}">Copy</button>
-        </div>
+        </div>` : ""}
         <div class="tags">${tags}</div>
       </div>
     </article>`;

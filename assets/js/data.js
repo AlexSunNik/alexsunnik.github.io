@@ -61,9 +61,17 @@ const NEWS = [
 //   links: { paper, arxiv, pdf, project, code, video } (empty ones are hidden)
 //   short: optional name for the placeholder thumbnail (defaults to text before ":")
 //   bibAuthors: optional full author list for the generated BibTeX (defaults to authors)
+//   comingSoon: true -> badge says "Coming Soon" and the Cite link is hidden until links exist
 //   award: optional highlighted note (awardUrl: optional link for it)
 // "Xinglong Sun" in authors is bolded automatically.
 const PUBLICATIONS = [
+  {
+    title: "AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding",
+    authors: "Tianhui Cai, Xinglong Sun, Chao Fang, Zhenxin Li, Rui Song, Jose M. Alvarez, Yunxiang Mao, Jiaqi Ma, Langechuan Liu",
+    venue: "arXiv", year: 2026, type: "preprint", comingSoon: true,
+    categories: ["policy", "foundation"],
+    thumb: "assets/img/thumbs/afforddrive.webp", links: {},
+  },
   {
     short: "LDP",
     title: "Large Discrete Policy: Advancing Explicit Behavior Modeling with Stochastic Iterative Scoring",

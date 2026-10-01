@@ -47,6 +47,52 @@ function authorsHTML(authors) {
 
 const LINK_LABELS = { paper: "Paper", arxiv: "arXiv", pdf: "PDF", project: "Project", code: "Code", video: "Video" };
 
+// Full venue names used in generated BibTeX.
+const BOOKTITLES = {
+  CVPR: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+  ICCV: "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)",
+  ECCV: "European Conference on Computer Vision (ECCV)",
+  NeurIPS: "Advances in Neural Information Processing Systems (NeurIPS)",
+  AAAI: "Proceedings of the AAAI Conference on Artificial Intelligence",
+  IROS: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+  ICRA: "IEEE International Conference on Robotics and Automation (ICRA)",
+  WACV: "Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
+  "IEEE IV": "IEEE Intelligent Vehicles Symposium (IV)",
+};
+
+function bibtex(pub) {
+  const authorList = (pub.bibAuthors || pub.authors).split(/\s*,\s*/);
+  const lastName = authorList[0].split(" ").pop().toLowerCase().replace(/[^a-z]/g, "");
+  const firstWord = pub.title.split(/[\s:]+/).find((w) => !/^(a|an|the|on|towards?)$/i.test(w)) || "";
+  const key = `${lastName}${pub.year}${firstWord.toLowerCase().replace(/[^a-z0-9]/g, "")}`;
+  const fields = [["title", `{${pub.title}}`], ["author", authorList.join(" and ")]];
+  const arxivId = (pub.links?.arxiv || "").split("/abs/")[1];
+  let type = "misc";
+  if (pub.type === "conference" && BOOKTITLES[pub.venue]) {
+    type = "inproceedings";
+    fields.push(["booktitle", BOOKTITLES[pub.venue]]);
+  } else if (arxivId) {
+    type = "article";
+    fields.push(["journal", `arXiv preprint arXiv:${arxivId}`]);
+  } else {
+    const url = pub.links?.pdf || pub.links?.paper;
+    if (url) fields.push(["howpublished", `\\url{${url}}`]);
+  }
+  fields.push(["year", String(pub.year)]);
+  return `@${type}{${key},\n${fields.map(([k, v]) => `  ${k} = {${v}}`).join(",\n")}\n}`;
+}
+
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  // Fallback for non-HTTPS contexts (e.g. opening the file locally).
+  const ta = Object.assign(document.createElement("textarea"), { value: text });
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand("copy");
+  ta.remove();
+  return Promise.resolve();
+}
+
 function pubHTML(pub) {
   const tags = pub.categories
     .map((k) => CATEGORIES[k])
@@ -57,6 +103,8 @@ function pubHTML(pub) {
     .filter(([, url]) => url)
     .map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(LINK_LABELS[k] || k)}</a>`)
     .join(" / ");
+  const idx = PUBLICATIONS.indexOf(pub);
+  const cite = `<a href="#" class="cite-btn" data-idx="${idx}">Cite</a>`;
   return `
     <article class="pub">
       <div class="thumb">${thumbHTML(pub)}</div>
@@ -65,7 +113,11 @@ function pubHTML(pub) {
         <div class="pub-title">${esc(pub.title)}</div>
         <div class="pub-authors">${authorsHTML(pub.authors)}</div>
         ${pub.award ? `<div class="award">🏆 ${pub.awardUrl ? `<a href="${esc(pub.awardUrl)}" target="_blank" rel="noopener">${esc(pub.award)}</a>` : esc(pub.award)}</div>` : ""}
-        ${links ? `<div class="pub-links">${links}</div>` : ""}
+        <div class="pub-links">${links ? `${links} / ` : ""}${cite}</div>
+        <div class="bib" id="bib-${idx}" hidden>
+          <pre>${esc(bibtex(pub))}</pre>
+          <button class="bib-copy" data-idx="${idx}">Copy</button>
+        </div>
         <div class="tags">${tags}</div>
       </div>
     </article>`;
@@ -113,6 +165,26 @@ function renderTalks() {
   }).join("");
 }
 
+// Cite: toggle the BibTeX panel and copy it; "Copy" re-copies.
+function setupCite() {
+  $("#pub-list").addEventListener("click", (e) => {
+    const btn = e.target.closest(".cite-btn, .bib-copy");
+    if (!btn) return;
+    e.preventDefault();
+    const idx = btn.dataset.idx;
+    const panel = $(`#bib-${idx}`);
+    const copyBtn = panel.querySelector(".bib-copy");
+    if (btn.classList.contains("cite-btn")) {
+      panel.hidden = !panel.hidden;
+      if (panel.hidden) return;
+    }
+    copyText(bibtex(PUBLICATIONS[idx])).then(() => {
+      copyBtn.textContent = "Copied ✓";
+      setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+    });
+  });
+}
+
 function renderExperience() {
   $("#exp-list").innerHTML = EXPERIENCE.map(
     (e) => `
@@ -134,10 +206,32 @@ function renderHonors() {
   $("#service-list").innerHTML = SERVICE.map((s) => `<li>${esc(s)}</li>`).join("");
 }
 
+function setupThemeToggle() {
+  const btn = $("#theme-toggle");
+  const isDark = () =>
+    document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+  const paint = () => {
+    btn.textContent = isDark() ? "☀" : "☾";
+    btn.title = isDark() ? "Switch to light mode" : "Switch to dark mode";
+  };
+  btn.onclick = () => {
+    const next = isDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    paint();
+  };
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint);
+  paint();
+}
+
+setupThemeToggle();
 renderProfile();
 renderNews();
 renderFilters();
 renderPubs();
+setupCite();
 renderTalks();
 renderExperience();
 renderHonors();

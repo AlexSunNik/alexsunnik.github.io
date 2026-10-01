@@ -15,7 +15,7 @@ const PROFILE = {
      embodied policies.`,
     `I received my M.S. in Computer Science from <b>Stanford University</b>, where I worked with
      Leonidas Guibas in the <a href="https://geometry.stanford.edu/">Geometric Computation Group</a>, and my B.S. in Computer Engineering from
-     the <b><a href="https://illinois.edu/">University of Illinois Urbana-Champaign</a></b>, graduating first in my class with Bronze
+     the <b>University of Illinois Urbana-Champaign</b>, graduating first in my class with Bronze
      Tablet honors. Previously, I worked on efficient deep learning and visual perception with
      <a href="https://www.humphreyshi.com/">Humphrey Shi</a>, <a href="https://yxw.cs.illinois.edu/">Yuxiong Wang</a>, and NVIDIA’s <a href="https://research.nvidia.com/labs/av-applied-research/">AV Applied Research Lab</a>.`,
   ],
@@ -60,6 +60,7 @@ const NEWS = [
 //   thumb: path to .jpg/.png/.gif/.webp/.mp4 in assets/img/thumbs/ (empty -> auto placeholder)
 //   links: { paper, arxiv, pdf, project, code, video } (empty ones are hidden)
 //   short: optional name for the placeholder thumbnail (defaults to text before ":")
+//   bibAuthors: optional full author list for the generated BibTeX (defaults to authors)
 //   award: optional highlighted note (awardUrl: optional link for it)
 // "Xinglong Sun" in authors is bolded automatically.
 const PUBLICATIONS = [
@@ -109,6 +110,8 @@ const PUBLICATIONS = [
   {
     title: "Cosmos-Transfer1: Conditional World Generation with Adaptive Multimodal Control",
     authors: "NVIDIA (incl. Xinglong Sun)",
+    // Full author list for BibTeX (from arXiv).
+    bibAuthors: "NVIDIA, Hassan Abu Alhaija, Jose Alvarez, Maciej Bala, Tiffany Cai, Tianshi Cao, Liz Cha, Joshua Chen, Mike Chen, Francesco Ferroni, Sanja Fidler, Dieter Fox, Yunhao Ge, Jinwei Gu, Ali Hassani, Michael Isaev, Pooya Jannaty, Shiyi Lan, Tobias Lasser, Huan Ling, Ming-Yu Liu, Xian Liu, Yifan Lu, Alice Luo, Qianli Ma, Hanzi Mao, Fabio Ramos, Xuanchi Ren, Tianchang Shen, Xinglong Sun, Shitao Tang, Ting-Chun Wang, Jay Wu, Jiashu Xu, Stella Xu, Kevin Xie, Yuchong Ye, Xiaodong Yang, Xiaohui Zeng, Yu Zeng",
     venue: "arXiv", year: 2025, type: "preprint",
     categories: ["foundation"],
     thumb: "assets/img/thumbs/cosmos-transfer1.mp4", links: {

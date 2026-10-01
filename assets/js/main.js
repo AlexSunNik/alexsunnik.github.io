@@ -6,7 +6,6 @@ const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function renderProfile() {
-  document.title = PROFILE.name;
   $("#name").textContent = PROFILE.name;
   $("#title").textContent = `${PROFILE.title} · ${PROFILE.affiliation}`;
   $("#bio").innerHTML = PROFILE.bio.map((p) => `<p>${p}</p>`).join("");

@@ -268,7 +268,7 @@ const LOGOS = {
 const EXPERIENCE = [
   { org: "NVIDIA", logos: ["nvidia"], role: "Research Scientist, Physical AI", dates: "May 2024 – Present", place: "Santa Clara, CA",
     note: "Physical AI and world modeling." },
-  { org: "Stanford University", logos: ["stanford"], role: "Researcher, Geometric Computation Group", dates: "Dec 2022 – Present", place: "Stanford, CA",
+  { org: "Stanford University", logos: ["stanford"], role: "Researcher, Geometric Computation Group", dates: "Dec 2022 – Apr 2024", place: "Stanford, CA",
     note: "Visual tracking and video understanding." },
   { org: "Stanford University", logos: ["stanford"], role: "M.S. in Computer Science (GPA 4.0/4.0)", dates: "Aug 2022 – May 2024", place: "Stanford, CA" },
   { org: "NVIDIA", logos: ["nvidia"], role: "Research Intern, AV Applied Research Lab", dates: "Mar 2022 – Dec 2022; Jun – Sep 2023", place: "Santa Clara, CA",
@@ -276,7 +276,7 @@ const EXPERIENCE = [
   { org: "INRIA & UIUC", logos: ["inria", "illinois"], role: "Researcher, WILLOW Group & UIUC Computer Vision Group", dates: "Jul 2021 – Sep 2022", place: "Urbana, IL",
     note: "3D vision." },
   { org: "NVIDIA", logos: ["nvidia"], role: "Architecture Energy Modeling Intern", dates: "May 2021 – Sep 2021", place: "Santa Clara, CA" },
-  { org: "GaTech & UIUC", logos: ["gatech", "illinois"], role: "Researcher, SHI Lab", dates: "Dec 2020 – Present", place: "Urbana, IL",
+  { org: "GaTech & UIUC", logos: ["gatech", "illinois"], role: "Researcher, SHI Lab", dates: "Dec 2020 – Jan 2024", place: "Urbana, IL",
     note: "Efficiency and model compression." },
   { org: "Apple", logos: ["apple"], role: "Hardware Technology Intern, SEG-CPU Team", dates: "Jun 2020 – Sep 2020", place: "Austin, TX" },
   { org: "University of Illinois Urbana-Champaign", logos: ["illinois"], role: "B.S. in Computer Engineering (Rank 1st in class, GPA 4.0/4.0)", dates: "Aug 2018 – Dec 2021", place: "Urbana, IL" },

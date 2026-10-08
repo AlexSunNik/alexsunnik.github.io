@@ -63,7 +63,7 @@ const NEWS = [
 //   bibAuthors: optional full author list for the generated BibTeX (defaults to authors)
 //   comingSoon: true -> badge says "Coming Soon" and the Cite link is hidden until links exist
 //   award: optional highlighted note (awardUrl: optional link for it)
-// "Xinglong Sun" in authors is bolded automatically.
+// "Xinglong Sun" / "Alex Sun" in authors is bolded automatically.
 const PUBLICATIONS = [
   {
     title: "AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding",
@@ -199,6 +199,13 @@ const PUBLICATIONS = [
     venue: "Preprint", year: 2024, type: "preprint",
     categories: ["perception"],
     thumb: "assets/img/thumbs/tag.webp", links: { pdf: "https://adamharley.com/tag/tag_draft.pdf" },
+  },
+  {
+    title: "SEER-MoE: Sparse Expert Efficiency through Regularization for Mixture-of-Experts",
+    authors: "Alexandre Muzio, Alex Sun, Churan He",
+    venue: "arXiv", year: 2024, type: "preprint",
+    categories: ["efficient"],
+    thumb: "", links: { arxiv: "https://arxiv.org/abs/2404.05089" },
   },
   {
     title: "Towards Better Structured Pruning Saliency by Reorganizing Convolution",

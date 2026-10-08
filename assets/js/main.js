@@ -42,7 +42,7 @@ function thumbHTML(pub) {
 }
 
 function authorsHTML(authors) {
-  return esc(authors).replace(/(Xinglong Sun|X\. Sun)/g, "<b>$1</b>");
+  return esc(authors).replace(/(Xinglong Sun|X\. Sun|Alex Sun)/g, "<b>$1</b>");
 }
 
 const LINK_LABELS = { paper: "Paper", arxiv: "arXiv", pdf: "PDF", project: "Project", code: "Code", video: "Video" };

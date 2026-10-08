@@ -44,7 +44,7 @@ const NEWS = [
   { date: "Sep 2026", text: `<b>Large Discrete Policy</b> accepted to <b>NeurIPS 2026</b>.` },
   { date: "Jun 2026", text: `<b>HAD</b> and <b>ZTRS</b> accepted to <b>ECCV 2026</b>.` },
   { date: "Jun 2026", text: `<b>DriveJudge</b> released on arXiv.` },
-  { date: "Jan 2026", text: `<b>DriveCritic</b> accepted to <b>IROS 2026</b>.` },
+  { date: "Jan 2026", text: `<b>DriveCritic</b> accepted to <b>ICRA 2026</b>.` },
   { date: "Nov 2025", text: `<b>DriveSuprim</b> accepted to <b>AAAI 2026</b>.` },
   { date: "Oct 2025", text: `Won the <b>Runner-up Award</b> and <b>Innovation Award</b> at the <a href="https://realadsim.github.io/2025/">RealADSim Workshop Challenge</a>, ICCV 2025.` },
   { date: "Jun 2025", text: `<b>AllTracker</b> accepted to <b>ICCV 2025</b>; collision-scenario work accepted to <b>IROS 2025</b>.` },
@@ -111,7 +111,7 @@ const PUBLICATIONS = [
   {
     title: "DriveCritic: Towards Context-Aware, Human-Aligned Evaluation for Autonomous Driving with Vision-Language Models",
     authors: "Jingyu Song, Zhenxin Li, Shiyi Lan, Xinglong Sun, Nadine Chang, Maying Shen, Joshua Chen, Katherine A. Skinner, Jose M. Alvarez",
-    venue: "IROS", year: 2026, type: "conference",
+    venue: "ICRA", year: 2026, type: "conference",
     categories: ["judge"],
     thumb: "assets/img/thumbs/drivecritic.webp", links: { arxiv: "https://arxiv.org/abs/2510.13108" },
   },

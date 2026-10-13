@@ -41,8 +41,12 @@ function thumbHTML(pub) {
   return `<div class="thumb-placeholder" style="--c:${cat.color}">${esc(short)}</div>`;
 }
 
-function authorsHTML(authors) {
-  return esc(authors).replace(/(Xinglong Sun|X\. Sun|Alex Sun)/g, "<b>$1</b>");
+// equalContrib = number of leading authors with equal contribution (marked with *).
+function authorsHTML(authors, equalContrib = 0) {
+  return authors
+    .split(/\s*,\s*/)
+    .map((a, i) => esc(a).replace(/(Xinglong Sun|X\. Sun|Alex Sun)/g, "<b>$1</b>") + (i < equalContrib ? "*" : ""))
+    .join(", ");
 }
 
 const LINK_LABELS = { paper: "Paper", arxiv: "arXiv", pdf: "PDF", project: "Project", code: "Code", video: "Video" };
@@ -113,7 +117,8 @@ function pubHTML(pub) {
           ? `<span class="venue-badge soon">${esc(pub.venue)} · Coming Soon</span>`
           : `<span class="venue-badge ${pub.type === "conference" ? "conf" : "preprint"}">${esc(pub.venue)} ${pub.year}</span>`}
         <div class="pub-title">${esc(pub.title)}</div>
-        <div class="pub-authors">${authorsHTML(pub.authors)}</div>
+        <div class="pub-authors">${authorsHTML(pub.authors, pub.equalContrib)}</div>
+        ${pub.equalContrib ? `<div class="equal-note">*Equal contribution</div>` : ""}
         ${pub.award ? `<div class="award">🏆 ${pub.awardUrl ? `<a href="${esc(pub.awardUrl)}" target="_blank" rel="noopener">${esc(pub.award)}</a>` : esc(pub.award)}</div>` : ""}
         ${links || cite ? `<div class="pub-links">${[links, cite].filter(Boolean).join(" / ")}</div>` : ""}
         ${cite ? `<div class="bib" id="bib-${idx}" hidden>

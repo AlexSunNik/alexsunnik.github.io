@@ -62,12 +62,14 @@ const NEWS = [
 //   short: optional name for the placeholder thumbnail (defaults to text before ":")
 //   bibAuthors: optional full author list for the generated BibTeX (defaults to authors)
 //   comingSoon: true -> badge says "Coming Soon" and the Cite link is hidden until links exist
+//   equalContrib: N -> first N authors marked * with an "*Equal contribution" note
 //   award: optional highlighted note (awardUrl: optional link for it)
 // "Xinglong Sun" / "Alex Sun" in authors is bolded automatically.
 const PUBLICATIONS = [
   {
     title: "AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding",
     authors: "Tianhui Cai, Xinglong Sun, Chao Fang, Zhenxin Li, Rui Song, Jose M. Alvarez, Yunxiang Mao, Jiaqi Ma, Langechuan Liu",
+    equalContrib: 2, // Tianhui Cai and Xinglong Sun are co-first authors
     venue: "arXiv", year: 2026, type: "preprint",
     categories: ["policy", "foundation"],
     thumb: "assets/img/thumbs/afforddrive.webp", links: {

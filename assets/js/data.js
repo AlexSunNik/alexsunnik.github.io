@@ -68,9 +68,12 @@ const PUBLICATIONS = [
   {
     title: "AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding",
     authors: "Tianhui Cai, Xinglong Sun, Chao Fang, Zhenxin Li, Rui Song, Jose M. Alvarez, Yunxiang Mao, Jiaqi Ma, Langechuan Liu",
-    venue: "arXiv", year: 2026, type: "preprint", comingSoon: true,
+    venue: "arXiv", year: 2026, type: "preprint",
     categories: ["policy", "foundation"],
-    thumb: "assets/img/thumbs/afforddrive.webp", links: {},
+    thumb: "assets/img/thumbs/afforddrive.webp", links: {
+      arxiv: "https://arxiv.org/abs/2610.11060",
+      // TODO: add project: "https://vickycth.github.io/AffordDrive3D/" once that page is live (404 as of Oct 13, 2026)
+    },
   },
   {
     short: "LDP",

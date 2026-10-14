@@ -41,6 +41,7 @@ const CATEGORIES = {
 
 // Newest first. Dates are free-form strings.
 const NEWS = [
+  { date: "Oct 2026", text: `<b>AffordDrive3D</b>, an affordance-aware world-action model for driving, released on <a href="https://arxiv.org/abs/2610.11060">arXiv</a>. <a href="https://afforddrive3d.github.io/">Project page</a>.` },
   { date: "Sep 2026", text: `<b>Large Discrete Policy</b> accepted to <b>NeurIPS 2026</b>.` },
   { date: "Jun 2026", text: `<b>HAD</b> and <b>ZTRS</b> accepted to <b>ECCV 2026</b>.` },
   { date: "Jun 2026", text: `<b>DriveJudge</b> released on arXiv.` },
@@ -74,7 +75,7 @@ const PUBLICATIONS = [
     categories: ["policy", "foundation"],
     thumb: "assets/img/thumbs/afforddrive.webp", links: {
       arxiv: "https://arxiv.org/abs/2610.11060",
-      // TODO: add project: "https://vickycth.github.io/AffordDrive3D/" once that page is live (404 as of Oct 13, 2026)
+      project: "https://afforddrive3d.github.io/",
     },
   },
   {
